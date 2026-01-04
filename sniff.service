@@ -1,0 +1,28 @@
+[Unit]
+Description=SNIFF Packet Capture Service
+Documentation=https://github.com/your-repo/sniff
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/sniff
+ExecStart=/usr/bin/python3 /opt/sniff/sniff.py -i INTERFACE
+ExecStop=/usr/bin/python3 /opt/sniff/sniff.py --stop
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Security hardening
+NoNewPrivileges=no
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/opt/sniff/sniff_data /tmp
+
+# Environment
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
+

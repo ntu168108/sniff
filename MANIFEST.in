@@ -1,0 +1,10 @@
+include README.md
+include LICENSE
+include requirements.txt
+include sniff.service
+include install-service.sh
+include install.sh
+include uninstall.sh
+recursive-include core *.py
+recursive-include modules *.py
+recursive-include ui *.py
