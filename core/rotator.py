@@ -175,9 +175,6 @@ class HourlyRotator:
             
             # Check if need to rotate
             if self._current_writer is None:
-                # #region agent log
-                import json; open('/home/tu/.cursor/debug.log','a').write(json.dumps({"location":"rotator.py:write_packet","message":"Opening new file","data":{"now":str(now)},"timestamp":__import__('time').time()*1000,"sessionId":"debug-session","hypothesisId":"C"})+'\n')
-                # #endregion
                 self._open_new_file(now)
             elif now >= self._next_rotate_time:
                 self._do_rotate(now)
@@ -187,9 +184,6 @@ class HourlyRotator:
                 self._current_writer.write_packet(ts_sec, ts_usec, data, origlen)
                 self._packet_count += 1
                 self._byte_count += len(data)
-                # #region agent log
-                if self._packet_count <= 5: import json; open('/home/tu/.cursor/debug.log','a').write(json.dumps({"location":"rotator.py:write_packet","message":"Packet written to PCAP","data":{"packet_count":self._packet_count,"filepath":str(self._current_filepath)},"timestamp":__import__('time').time()*1000,"sessionId":"debug-session","hypothesisId":"C"})+'\n')
-                # #endregion
     
     def write_packet_info(self, pkt_info: PacketInfo):
         """Write PacketInfo object"""
