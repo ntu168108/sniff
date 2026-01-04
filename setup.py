@@ -24,6 +24,7 @@ setup(
     
     # Package configuration
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*"]),
+    py_modules=['sniff'],  # Include sniff.py as a module
     include_package_data=True,
     
     # Python version requirement
