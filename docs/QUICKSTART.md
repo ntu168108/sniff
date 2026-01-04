@@ -9,7 +9,7 @@
 Run this ONE command:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/sniff/main/install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/install.sh | sudo bash
 ```
 
 **That's it!** The script automatically installs:
@@ -127,7 +127,7 @@ See [USER_GUIDE.md](USER_GUIDE.md) for complete documentation.
 ## 🗑️ Uninstall
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/sniff/main/uninstall.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/uninstall.sh | sudo bash
 ```
 
 ---

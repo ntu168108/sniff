@@ -28,7 +28,7 @@
 Install everything (Python + dependencies + SNIFF) with one command:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/sniff/main/install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/install.sh | sudo bash
 ```
 
 **What this does:**
@@ -274,7 +274,7 @@ Or install manually:
 sudo ./install-service.sh eth0
 
 # Or use the install.sh and choose service setup
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/sniff/main/install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/install.sh | sudo bash
 # Then answer 'y' when asked about systemd service
 ```
 
@@ -518,7 +518,7 @@ Available Interfaces:
 sudo pip3 install scapy>=2.5.0
 
 # Or reinstall SNIFF (includes dependencies)
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/sniff/main/install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/install.sh | sudo bash
 ```
 
 ### "Cannot capture packets" / 0 packets captured
@@ -571,7 +571,7 @@ rm -rf sniff_data/raw/2026-01-01/
 
 ```bash
 # One-line uninstall
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/sniff/main/uninstall.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/uninstall.sh | sudo bash
 ```
 
 This removes:
@@ -636,7 +636,7 @@ sudo sniff -i eth0 -d -b fast -r 90
 sudo sniff --help
 
 # GitHub Issues
-https://github.com/YOUR_USERNAME/sniff/issues
+https://github.com/ntu168108/sniff/issues
 
 # View version
 pip3 show sniff-pcap
@@ -648,7 +648,7 @@ pip3 show sniff-pcap
 
 ```bash
 # Installation
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/sniff/main/install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/install.sh | sudo bash
 
 # Interactive Mode
 sudo sniff
@@ -673,7 +673,7 @@ sudo journalctl -u sniff -f
 sudo sniff --list-interfaces
 
 # Uninstall
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/sniff/main/uninstall.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/uninstall.sh | sudo bash
 ```
 
 ---

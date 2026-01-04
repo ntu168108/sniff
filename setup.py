@@ -18,8 +18,8 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Tu",
-    author_email="your-email@example.com",
-    url="https://github.com/your-username/sniff",
+    author_email="ntu168108@gmail.com",
+    url="https://github.com/ntu168108/sniff",
     license="MIT",
     
     # Package configuration
@@ -63,7 +63,7 @@ setup(
     
     # Project URLs
     project_urls={
-        "Bug Reports": "https://github.com/your-username/sniff/issues",
-        "Source": "https://github.com/your-username/sniff",
+        "Bug Reports": "https://github.com/ntu168108/sniff/issues",
+        "Source": "https://github.com/ntu168108/sniff",
     },
 )

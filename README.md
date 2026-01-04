@@ -1,171 +1,201 @@
-# SNIFF - Network Packet Capture Tool
+# SNIFF - Công Cụ Bắt Gói Tin Mạng
 
 ![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Platform](https://img.shields.io/badge/platform-linux-lightgrey.svg)
 
-A powerful, modular network packet capture tool for Linux with real-time TUI and extensible analysis modules.
+Công cụ bắt gói tin mạng mạnh mẽ và modular cho Linux với giao diện TUI real-time và hệ thống module phân tích mở rộng.
 
-## ✨ Features
+[English](README.md) | **Tiếng Việt**
 
-- 🎯 **Real-time Packet Capture** - High-performance capture using Scapy/libpcap
-- 📊 **Interactive TUI** - Beautiful text-based user interface for live packet monitoring
-- 🔄 **Hourly Rotation** - Automatic PCAP file rotation with configurable retention
-- 🔌 **Plugin System** - Extensible module architecture for custom packet analysis
-- ⚙️ **Daemon Mode** - Run as systemd service for 24/7 monitoring
-- 🎨 **Advanced Decoder** - Built-in support for Ethernet, IPv4, IPv6, TCP, UDP, ICMP, ARP
-- ⏸️ **Pause/Resume** - Control capture on the fly without losing data
-- 📝 **BPF Filters** - Berkeley Packet Filter support for targeted capture
+## ✨ Tính Năng
 
-## ⚡ Quick Install (One Command)
+- 🎯 **Bắt Gói Tin Real-time** - Hiệu suất cao sử dụng Scapy/libpcap
+- 📊 **Giao Diện TUI Tương Tác** - Giao diện text đẹp mắt để giám sát gói tin trực tiếp
+- 🔄 **Tự Động Quay Vòng Theo Giờ** - Tự động xoay file PCAP với cấu hình lưu trữ linh hoạt
+- 🔌 **Hệ Thống Plugin** - Kiến trúc module mở rộng cho phân tích gói tin tùy chỉnh
+- ⚙️ **Chế Độ Daemon** - Chạy như systemd service để giám sát 24/7
+- 🎨 **Bộ Giải Mã Nâng Cao** - Hỗ trợ sẵn Ethernet, IPv4, IPv6, TCP, UDP, ICMP, ARP
+- ⏸️ **Tạm Dừng/Tiếp Tục** - Điều khiển capture mà không mất dữ liệu
+- 📝 **BPF Filters** - Hỗ trợ Berkeley Packet Filter để capture có mục tiêu
+
+## ⚡ Cài Đặt Nhanh (Một Lệnh)
 
 ```bash
-# Install everything automatically (Python + SNIFF)
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/sniff/main/install.sh | sudo bash
+# Tự động cài đặt mọi thứ (Python + SNIFF)
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/scripts/install.sh | sudo bash
 ```
 
-That's it! Then run:
+Xong! Sau đó chạy:
 ```bash
 sudo sniff
 ```
 
-## 🚀 Quick Start
+## 🚀 Bắt Đầu Nhanh
 
-### Requirements
+### Yêu Cầu Hệ Thống
 
-- Linux OS (tested on Ubuntu 20.04+, Debian 11+)
-- Python 3.8 or higher
-- Root/sudo privileges (required for packet capture)
+- Linux OS (đã test trên Ubuntu 20.04+, Debian 11+)
+- Python 3.8 trở lên
+- Quyền root/sudo (cần thiết để bắt gói tin)
 
-### Installation
+### Cài Đặt
 
-**Method 1: Automatic Install (Recommended) ⭐**
+**Phương Pháp 1: Tự Động Cài Đặt (Khuyến Nghị) ⭐**
 
-One command installs Python, dependencies, and SNIFF:
+Một lệnh cài đặt Python, dependencies và SNIFF:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/sniff/main/install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/scripts/install.sh | sudo bash
 ```
 
-**Method 2: Manual Install with pip**
+**Phương Pháp 2: Cài Đặt Thủ Công với pip**
 
 ```bash
-# Install from GitHub repo
-sudo pip3 install git+https://github.com/YOUR_USERNAME/sniff.git
+# Cài từ GitHub repo
+sudo pip3 install git+https://github.com/ntu168108/sniff.git
 ```
 
-**Method 3: Clone and Install**
-
-### Basic Usage
+**Phương Pháp 3: Clone và Cài Đặt**
 
 ```bash
-# Interactive menu mode
+git clone https://github.com/ntu168108/sniff.git
+cd sniff
+sudo pip3 install .
+```
+
+### Sử Dụng Cơ Bản
+
+```bash
+# Chế độ menu tương tác
 sudo sniff
 
-# Quick capture on specific interface
+# Capture nhanh trên interface cụ thể
 sudo sniff -i eth0
 
-# Capture with BPF filter
+# Capture với BPF filter
 sudo sniff -i eth0 -f "tcp port 80"
 
-# Run as daemon
+# Chạy như daemon
 sudo sniff -i eth0 -d
 
-# Check daemon status
+# Kiểm tra trạng thái daemon
 sudo sniff --status
 
-# Stop daemon
+# Dừng daemon
 sudo sniff --stop
 
-# List available interfaces
+# Liệt kê các interface có sẵn
 sudo sniff --list-interfaces
 ```
 
-## 📖 Usage Examples
+## 📖 Ví Dụ Sử Dụng
 
-### Interactive Mode
+### Chế Độ Tương Tác
 
-The easiest way to use SNIFF is the interactive menu:
+Cách dễ nhất để sử dụng SNIFF là menu tương tác:
 
 ```bash
 sudo sniff
 ```
 
-This will show you:
-- Quick capture on any interface
-- Advanced capture with custom settings
-- Browse captured PCAP files
-- Configure settings
+Menu sẽ hiển thị:
+- Quick capture trên bất kỳ interface nào
+- Advanced capture với cài đặt tùy chỉnh
+- Duyệt các file PCAP đã capture
+- Cấu hình settings
 
-### Command Line Options
+### Tùy Chọn Command Line
 
 ```bash
 sniff [-h] [-i INTERFACE] [-f FILTER] [-s SNAPLEN] [-p] 
       [-b {low,balanced,fast,max}] [-o OUTPUT] [-r RETENTION]
       [-d] [--status] [--stop] [--list-interfaces]
 
-Options:
-  -i, --interface INTERFACE  Network interface to capture on
-  -f, --filter FILTER        BPF filter (e.g., "tcp port 80")
-  -s, --snaplen SNAPLEN      Capture length (default: 65535)
-  -p, --no-promisc          Disable promiscuous mode
-  -b, --buffer PROFILE      Buffer profile: low, balanced, fast, max
-  -o, --output OUTPUT       Output directory (default: ./sniff_data)
-  -r, --retention DAYS      Days to keep files (default: 7)
-  -d, --daemon              Run as daemon (background)
-  --status                  Show daemon status
-  --stop                    Stop daemon
-  --list-interfaces         List available interfaces
+Tùy chọn:
+  -i, --interface INTERFACE  Interface mạng để capture
+  -f, --filter FILTER        BPF filter (ví dụ: "tcp port 80")
+  -s, --snaplen SNAPLEN      Độ dài capture (mặc định: 65535)
+  -p, --no-promisc          Tắt chế độ promiscuous
+  -b, --buffer PROFILE      Profile buffer: low, balanced, fast, max
+  -o, --output OUTPUT       Thư mục output (mặc định: ./sniff_data)
+  -r, --retention DAYS      Số ngày lưu file (mặc định: 7)
+  -d, --daemon              Chạy như daemon (background)
+  --status                  Hiển thị trạng thái daemon
+  --stop                    Dừng daemon
+  --list-interfaces         Liệt kê interfaces có sẵn
 ```
 
-### Install as Systemd Service
+### Ví Dụ Thực Tế
 
-For production 24/7 monitoring:
+**Giám sát traffic web:**
+```bash
+sudo sniff -i eth0 -f "port 80 or port 443"
+```
+
+**Capture DNS queries:**
+```bash
+sudo sniff -i eth0 -f "port 53"
+```
+
+**Debug traffic từ host cụ thể:**
+```bash
+sudo sniff -i eth0 -f "host 192.168.1.100"
+```
+
+**Giám sát 24/7 với daemon:**
+```bash
+sudo sniff -i eth0 -d -b fast -r 30
+```
+
+### Cài Đặt như Systemd Service
+
+Để giám sát production 24/7:
 
 ```bash
-# Use the provided installer
-sudo ./install-service.sh eth0
+# Dùng script cài đặt có sẵn
+sudo ./scripts/install-service.sh eth0
 
-# Or manually:
-sudo cp sniff.service /etc/systemd/system/
+# Hoặc thủ công:
+sudo cp scripts/sniff.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable sniff
 sudo systemctl start sniff
 
-# Check status
+# Kiểm tra trạng thái
 sudo systemctl status sniff
 
-# View logs
+# Xem logs
 sudo journalctl -u sniff -f
 ```
 
-## 📁 Project Structure
+## 📁 Cấu Trúc Dự Án
 
 ```
 sniff/
 ├── core/               # Core capture engine
-│   ├── capture.py     # Packet capture with Scapy
-│   ├── decoder.py     # Packet decoder
+│   ├── capture.py     # Packet capture với Scapy
+│   ├── decoder.py     # Bộ giải mã gói tin
 │   ├── pcap_writer.py # PCAP file I/O
-│   ├── rotator.py     # Hourly file rotation
-│   └── constants.py   # Constants and configs
-├── modules/           # Analysis modules
+│   ├── rotator.py     # Tự động xoay file theo giờ
+│   └── constants.py   # Constants và configs
+├── modules/           # Các module phân tích
 │   ├── base.py        # Module base class
 │   ├── runner.py      # Module executor
-│   └── dummy/         # Example module
-├── ui/                # Text UI
-│   ├── menu.py        # Main menu
-│   ├── list_view.py   # Packet list view
-│   ├── detail_view.py # Packet detail view
-│   └── colors.py      # Terminal colors
-├── sniff.py           # Main entry point
+│   └── dummy/         # Module mẫu
+├── ui/                # Giao diện Text
+│   ├── menu.py        # Menu chính
+│   ├── list_view.py   # Hiển thị danh sách gói tin
+│   ├── detail_view.py # Xem chi tiết gói tin
+│   └── colors.py      # Màu terminal
+├── sniff.py           # Entry point chính
 ├── setup.py           # Package setup
 └── requirements.txt   # Dependencies
 ```
 
-## 🔌 Plugin Development
+## 🔌 Phát Triển Plugin
 
-Create custom analysis modules easily:
+Tạo module phân tích tùy chỉnh dễ dàng:
 
 ```python
 from modules.base import BaseModule, Summary, Detection
@@ -176,9 +206,9 @@ class MyModule(BaseModule):
         return "my_module"
     
     def analyze(self, pcap_path, output_dir, interface, time_window) -> Summary:
-        # Your analysis logic here
+        # Logic phân tích của bạn ở đây
         detections = []
-        # ... analyze packets ...
+        # ... phân tích packets ...
         
         summary = Summary(
             module_name=self.name,
@@ -190,85 +220,117 @@ class MyModule(BaseModule):
         return summary
 ```
 
-## 📊 Data Storage
+## 📊 Lưu Trữ Dữ Liệu
 
-By default, SNIFF stores data in `./sniff_data/`:
+Mặc định, SNIFF lưu dữ liệu trong `./sniff_data/`:
 
 ```
 sniff_data/
-├── raw/                    # Raw PCAP files
+├── raw/                    # File PCAP thô
 │   └── YYYY-MM-DD/
 │       └── interface_YYYY-MM-DD_HH.pcap
-└── modules/                # Analysis results
+└── modules/                # Kết quả phân tích
     └── module_name/
         └── YYYY-MM-DD/
             ├── interface_YYYY-MM-DD_HH.summary.json
             └── interface_YYYY-MM-DD_HH.index.jsonl
 ```
 
-## 🛠️ Configuration
+## 🛠️ Cấu Hình
 
 ### Buffer Profiles
 
-- `low` - Minimal memory usage (1MB buffer, 100 queue)
-- `balanced` - Default (4MB buffer, 500 queue)
-- `fast` - High performance (16MB buffer, 2000 queue)
-- `max` - Maximum throughput (64MB buffer, 10000 queue)
+- `low` - Tối thiểu bộ nhớ (1MB buffer, 100 queue)
+- `balanced` - Mặc định (4MB buffer, 500 queue)
+- `fast` - Hiệu suất cao (16MB buffer, 2000 queue)
+- `max` - Throughput tối đa (64MB buffer, 10000 queue)
 
-### File Retention
+### File Retention (Lưu Trữ)
 
-Configure automatic cleanup of old files:
+Cấu hình tự động xóa file cũ:
 
 ```bash
-sudo sniff -i eth0 -r 30  # Keep files for 30 days
+sudo sniff -i eth0 -r 30  # Giữ file trong 30 ngày
 ```
 
-## 🔒 Security Considerations
+## 🔒 Cân Nhắc Bảo Mật
 
-- SNIFF requires root privileges for raw socket access
-- Systemd service includes security hardening (`ProtectSystem`, `ProtectHome`)
-- BPF filters help reduce attack surface
-- Captured data may contain sensitive information - secure appropriately
+- SNIFF yêu cầu quyền root để truy cập raw socket
+- Systemd service bao gồm security hardening (`ProtectSystem`, `ProtectHome`)
+- BPF filters giúp giảm bề mặt tấn công
+- Dữ liệu capture có thể chứa thông tin nhạy cảm - bảo mật phù hợp
 
-## 🐛 Troubleshooting
+## 🐛 Khắc Phục Sự Cố
 
-### Permission Denied
+### Lỗi Permission Denied
 
 ```bash
-# Ensure you're running with sudo
+# Đảm bảo chạy với sudo
 sudo sniff -i eth0
 ```
 
-### Interface Not Found
+### Không Tìm Thấy Interface
 
 ```bash
-# List available interfaces
+# Liệt kê các interface có sẵn
 sudo sniff --list-interfaces
 
-# Check interface is up
+# Kiểm tra interface đang up
 ip link show
 ```
 
-### Scapy Import Error
+### Lỗi Import Scapy
 
 ```bash
-# Install Scapy
+# Cài đặt Scapy
 sudo pip3 install scapy>=2.5.0
 ```
 
+### CPU Cao
+
+```bash
+# Giảm buffer size
+sudo sniff -i eth0 -b low
+
+# Hoặc filter traffic cụ thể
+sudo sniff -i eth0 -f "host 192.168.1.100"
+```
+
+## 📖 Tài Liệu
+
+- [Hướng Dẫn Đầy Đủ](docs/USER_GUIDE.md) - Documentation chi tiết
+- [Quick Start](docs/QUICKSTART.md) - Bắt đầu trong 2 phút
+- [Project Files](docs/PROJECT_FILES.md) - Danh sách files trong project
+
 ## 📝 License
 
-MIT License - see LICENSE file for details
+MIT License - xem file LICENSE để biết chi tiết
 
-## 🤝 Contributing
+## 🤝 Đóng Góp
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions được hoan nghênh! Vui lòng submit Pull Request.
 
-## 👨‍💻 Author
+## 👨‍💻 Tác Giả
 
-Created by Tu
+Được tạo bởi Tu
 
-## 🙏 Acknowledgments
+## 🙏 Cảm Ơn
 
-- Built with [Scapy](https://scapy.net/) - powerful packet manipulation library
-- Inspired by tcpdump, Wireshark, and other network analysis tools
+- Được xây dựng với [Scapy](https://scapy.net/) - thư viện xử lý gói tin mạnh mẽ
+- Lấy cảm hứng từ tcpdump, Wireshark và các công cụ phân tích mạng khác
+
+---
+
+## 🚀 Bắt Đầu Ngay
+
+```bash
+# Cài đặt
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/scripts/install.sh | sudo bash
+
+# Chạy
+sudo sniff
+
+# Enjoy! 🎉
+```
+
+**⭐ Star repo nếu bạn thấy hữu ích!**

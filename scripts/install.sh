@@ -132,7 +132,7 @@ echo ""
 echo -e "${BLUE}[5/5] Installing SNIFF...${NC}"
 
 # Determine installation method
-GITHUB_REPO="YOUR_USERNAME/sniff"  # Update this
+GITHUB_REPO="ntu168108/sniff"
 INSTALL_METHOD="github"
 
 if [ "$INSTALL_METHOD" = "github" ]; then
