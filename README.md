@@ -8,18 +8,18 @@ Công cụ bắt gói tin mạng mạnh mẽ và modular cho Linux với giao di
 
 [English](README.md) | **Tiếng Việt**
 
-## ✨ Tính Năng
+## Tính Năng
 
-- 🎯 **Bắt Gói Tin Real-time** - Hiệu suất cao sử dụng Scapy/libpcap
-- 📊 **Giao Diện TUI Tương Tác** - Giao diện text đẹp mắt để giám sát gói tin trực tiếp
-- 🔄 **Tự Động Quay Vòng Theo Giờ** - Tự động xoay file PCAP với cấu hình lưu trữ linh hoạt
-- 🔌 **Hệ Thống Plugin** - Kiến trúc module mở rộng cho phân tích gói tin tùy chỉnh
-- ⚙️ **Chế Độ Daemon** - Chạy như systemd service để giám sát 24/7
-- 🎨 **Bộ Giải Mã Nâng Cao** - Hỗ trợ sẵn Ethernet, IPv4, IPv6, TCP, UDP, ICMP, ARP
-- ⏸️ **Tạm Dừng/Tiếp Tục** - Điều khiển capture mà không mất dữ liệu
-- 📝 **BPF Filters** - Hỗ trợ Berkeley Packet Filter để capture có mục tiêu
+- **Bắt Gói Tin Real-time** - Hiệu suất cao sử dụng Scapy/libpcap
+- **Giao Diện TUI Tương Tác** - Giao diện text đẹp mắt để giám sát gói tin trực tiếp
+- **Tự Động Quay Vòng Theo Giờ** - Tự động xoay file PCAP với cấu hình lưu trữ linh hoạt
+- **Hệ Thống Plugin** - Kiến trúc module mở rộng cho phân tích gói tin tùy chỉnh
+- **Chế Độ Daemon** - Chạy như systemd service để giám sát 24/7
+- **Bộ Giải Mã Nâng Cao** - Hỗ trợ sẵn Ethernet, IPv4, IPv6, TCP, UDP, ICMP, ARP
+- **Tạm Dừng/Tiếp Tục** - Điều khiển capture mà không mất dữ liệu
+- **BPF Filters** - Hỗ trợ Berkeley Packet Filter để capture có mục tiêu
 
-## ⚡ Cài Đặt Nhanh (Một Lệnh)
+## Cài Đặt Nhanh (Một Lệnh)
 
 ```bash
 # Tự động cài đặt mọi thứ (Python + SNIFF)
@@ -31,7 +31,7 @@ Xong! Sau đó chạy:
 sudo sniff
 ```
 
-## 🚀 Bắt Đầu Nhanh
+## Bắt Đầu Nhanh
 
 ### Yêu Cầu Hệ Thống
 
@@ -41,7 +41,7 @@ sudo sniff
 
 ### Cài Đặt
 
-**Phương Pháp 1: Tự Động Cài Đặt (Khuyến Nghị) ⭐**
+**Phương Pháp 1: Tự Động Cài Đặt (Khuyến Nghị)**
 
 Một lệnh cài đặt Python, dependencies và SNIFF:
 
@@ -89,7 +89,7 @@ sudo sniff --stop
 sudo sniff --list-interfaces
 ```
 
-## 📖 Ví Dụ Sử Dụng
+## Ví Dụ Sử Dụng
 
 ### Chế Độ Tương Tác
 
@@ -169,7 +169,7 @@ sudo systemctl status sniff
 sudo journalctl -u sniff -f
 ```
 
-## 📁 Cấu Trúc Dự Án
+## Cấu Trúc Dự Án
 
 ```
 sniff/
@@ -193,7 +193,7 @@ sniff/
 └── requirements.txt   # Dependencies
 ```
 
-## 🔌 Phát Triển Plugin
+## Phát Triển Plugin
 
 Tạo module phân tích tùy chỉnh dễ dàng:
 
@@ -220,7 +220,7 @@ class MyModule(BaseModule):
         return summary
 ```
 
-## 📊 Lưu Trữ Dữ Liệu
+## Lưu Trữ Dữ Liệu
 
 Mặc định, SNIFF lưu dữ liệu trong `./sniff_data/`:
 
@@ -236,7 +236,7 @@ sniff_data/
             └── interface_YYYY-MM-DD_HH.index.jsonl
 ```
 
-## 🛠️ Cấu Hình
+## Cấu Hình
 
 ### Buffer Profiles
 
@@ -253,14 +253,14 @@ Cấu hình tự động xóa file cũ:
 sudo sniff -i eth0 -r 30  # Giữ file trong 30 ngày
 ```
 
-## 🔒 Cân Nhắc Bảo Mật
+## Cân Nhắc Bảo Mật
 
 - SNIFF yêu cầu quyền root để truy cập raw socket
 - Systemd service bao gồm security hardening (`ProtectSystem`, `ProtectHome`)
 - BPF filters giúp giảm bề mặt tấn công
 - Dữ liệu capture có thể chứa thông tin nhạy cảm - bảo mật phù hợp
 
-## 🐛 Khắc Phục Sự Cố
+## Khắc Phục Sự Cố
 
 ### Lỗi Permission Denied
 
@@ -296,32 +296,32 @@ sudo sniff -i eth0 -b low
 sudo sniff -i eth0 -f "host 192.168.1.100"
 ```
 
-## 📖 Tài Liệu
+## Tài Liệu
 
 - [Hướng Dẫn Đầy Đủ](docs/USER_GUIDE.md) - Documentation chi tiết
 - [Quick Start](docs/QUICKSTART.md) - Bắt đầu trong 2 phút
 - [Project Files](docs/PROJECT_FILES.md) - Danh sách files trong project
 
-## 📝 License
+## License
 
 MIT License - xem file LICENSE để biết chi tiết
 
-## 🤝 Đóng Góp
+## Đóng Góp
 
 Contributions được hoan nghênh! Vui lòng submit Pull Request.
 
-## 👨‍💻 Tác Giả
+## Tác Giả
 
 Được tạo bởi Tu
 
-## 🙏 Cảm Ơn
+## Cảm Ơn
 
 - Được xây dựng với [Scapy](https://scapy.net/) - thư viện xử lý gói tin mạnh mẽ
 - Lấy cảm hứng từ tcpdump, Wireshark và các công cụ phân tích mạng khác
 
 ---
 
-## 🚀 Bắt Đầu Ngay
+## Bắt Đầu Ngay
 
 ```bash
 # Cài đặt
@@ -330,7 +330,7 @@ curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/scripts/install
 # Chạy
 sudo sniff
 
-# Enjoy! 🎉
+# Enjoy!
 ```
 
-**⭐ Star repo nếu bạn thấy hữu ích!**
+**Star repo nếu bạn thấy hữu ích!**

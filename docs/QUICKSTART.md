@@ -1,135 +1,162 @@
-# SNIFF - Quick Start Guide
+# SNIFF - Hướng Dẫn Bắt Đầu Nhanh
 
-**Get started with SNIFF in 2 minutes!**
+**Bắt đầu với SNIFF trong 2 phút!**
 
 ---
 
-## 📦 Installation (30 seconds)
+## 📦 Cài Đặt (30 giây)
 
-Run this ONE command:
+Chạy MỘT lệnh này:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/scripts/install.sh | sudo bash
 ```
 
-**That's it!** The script automatically installs:
-- ✅ Python 3.8+
-- ✅ pip3
-- ✅ scapy
-- ✅ SNIFF
+**Xong!** Script tự động cài đặt:
+- ✅ Python 3.8+ (ngôn ngữ lập trình)
+- ✅ pip3 (trình quản lý package của Python)
+- ✅ scapy (thư viện bắt gói tin)
+- ✅ SNIFF (công cụ này)
 
 ---
 
-## ⚡ Quick Start (1 minute)
+## ⚡ Bắt Đầu Nhanh (1 phút)
 
-### Option 1: Interactive Menu (Easiest)
+### Cách 1: Menu Tương Tác (Dễ nhất)
 
 ```bash
 sudo sniff
 ```
 
-Then:
-1. Press `1` for Quick Capture
-2. Select your network interface (e.g., `eth0`)
-3. Watch packets flow in real-time! 🎉
+Sau đó:
+1. Nhấn `1` để quick capture (bắt nhanh)
+2. Chọn **interface mạng** của bạn (ví dụ: `eth0`, `wlan0`)
+   - *Interface mạng: card mạng/kết nối mạng trên máy tính*
+3. Xem gói tin **real-time** (trực tiếp)! 🎉
+   - *Gói tin (packet): đơn vị dữ liệu được truyền qua mạng*
 
-**Controls:**
-- `SPACE` - Pause/Resume
-- `S` - Save and exit
-- `Q` - Quit
+**Phím điều khiển:**
+- `SPACE` - Tạm dừng/Tiếp tục
+- `S` - Lưu và thoát
+- `Q` - Thoát
 
-### Option 2: Command Line (Fast)
+### Cách 2: Command Line (Nhanh)
 
 ```bash
-# Capture on eth0
+# Bắt gói tin trên eth0
 sudo sniff -i eth0
 
-# Capture HTTP traffic only
+# Chỉ bắt traffic HTTP (web)
 sudo sniff -i eth0 -f "tcp port 80"
+# -f: filter (bộ lọc), chỉ bắt từ cổng 80 (HTTP)
 
-# Run as background daemon
+# Chạy ở chế độ daemon (background)
 sudo sniff -i eth0 -d
+# daemon: chạy ngầm, không hiển thị giao diện
 ```
 
 ---
 
-## 🎯 Common Use Cases
+## 🎯 Các Trường Hợp Sử Dụng Thường Gặp
 
-### Monitor All Traffic
+### Giám Sát Toàn Bộ Traffic (Dữ Liệu Mạng)
 ```bash
 sudo sniff -i eth0
 ```
 
-### Monitor Web Traffic (HTTP/HTTPS)
+### Giám Sát Web Traffic (HTTP/HTTPS)
 ```bash
 sudo sniff -i eth0 -f "port 80 or port 443"
+# port 80: HTTP (web thường)
+# port 443: HTTPS (web bảo mật)
 ```
 
-### Monitor Specific Host
+### Giám Sát Host (Máy) Cụ Thể
 ```bash
 sudo sniff -i eth0 -f "host 192.168.1.100"
+# Chỉ bắt traffic đến/đi từ IP 192.168.1.100
 ```
 
-### 24/7 Background Monitoring
+### Giám Sát 24/7 Chạy Ngầm
 ```bash
 sudo sniff -i eth0 -d
 ```
 
-Check status:
+Kiểm tra trạng thái:
 ```bash
 sudo sniff --status
 ```
 
-Stop:
+Dừng:
 ```bash
 sudo sniff --stop
 ```
 
 ---
 
-## 📁 Where Are My Files?
+## 📁 File Được Lưu Ở Đâu?
 
-Default location: `./sniff_data/raw/`
+Vị trí mặc định: `./sniff_data/raw/`
 
 ```
 sniff_data/
-└── raw/
-    └── 2026-01-04/
-        ├── eth0_2026-01-04_00.pcap  
-        ├── eth0_2026-01-04_01.pcap
+└── raw/                        # File PCAP thô
+    └── 2026-01-04/             # Theo ngày
+        ├── eth0_2026-01-04_00.pcap  # Theo giờ (00:00)
+        ├── eth0_2026-01-04_01.pcap  # 01:00
         └── ...
 ```
 
-**Open with Wireshark:**
+> **PCAP**: Packet Capture - định dạng file lưu trữ gói tin mạng, có thể mở bằng Wireshark
+
+**Mở bằng Wireshark:**
 ```bash
 wireshark sniff_data/raw/2026-01-04/eth0_2026-01-04_22.pcap
 ```
 
 ---
 
-## 🛠️ Need Help?
+## 🛠️ Cần Giúp Đỡ?
 
-### List Network Interfaces
+### Liệt Kê Các Interface Mạng
 ```bash
 sudo sniff --list-interfaces
+# Xem các kết nối mạng: eth0, wlan0, lo, etc.
 ```
 
-### View All Options
+### Xem Tất Cả Tùy Chọn
 ```bash
 sudo sniff --help
 ```
 
-### Read Full Documentation
-See [USER_GUIDE.md](USER_GUIDE.md) for complete documentation.
+### Đọc Hướng Dẫn Đầy Đủ
+Xem [USER_GUIDE.md](USER_GUIDE.md) để biết chi tiết.
 
 ---
 
-## 🗑️ Uninstall
+## 🗑️ Gỡ Cài Đặt
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/uninstall.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/scripts/uninstall.sh | sudo bash
 ```
 
 ---
 
-**That's it! Happy packet capturing! 🚀**
+## 📚 Giải Thích Thuật Ngữ
+
+| Thuật Ngữ | Giải Thích |
+|-----------|------------|
+| **Packet (Gói tin)** | Đơn vị dữ liệu nhỏ được truyền qua mạng, giống như "bức thư" điện tử |
+| **Interface** | Card mạng/kết nối mạng (eth0: dây mạng, wlan0: wifi) |
+| **Port (Cổng)** | Số định danh dịch vụ (80: web, 22: SSH, 443: HTTPS) |
+| **Traffic** | Lưu lượng dữ liệu mạng đi qua |
+| **Daemon** | Chương trình chạy ngầm, không hiển thị giao diện |
+| **Filter (Bộ lọc)** | Điều kiện để chọn lọc gói tin muốn xem |
+| **PCAP** | File lưu gói tin, mở được bằng Wireshark |
+| **BPF** | Berkeley Packet Filter - ngôn ngữ lọc gói tin |
+| **Real-time** | Trực tiếp, ngay lập tức |
+| **TUI** | Text User Interface - giao diện text |
+
+---
+
+**Vậy thôi! Chúc bắt gói tin vui vẻ! 🚀**

@@ -1,452 +1,462 @@
-# SNIFF - User Guide & Documentation
+# SNIFF - Hướng Dẫn Sử Dụng Đầy Đủ
 
-![SNIFF Banner](https://img.shields.io/badge/SNIFF-Packet_Capture_Tool-blue?style=for-the-badge)
+![SNIFF Banner](https://img.shields.io/badge/SNIFF-C%C3%B4ng_C%E1%BB%A5_B%E1%BA%AFt_G%C3%B3i_Tin-blue?style=for-the-badge)
 
-**Complete guide for installing and using SNIFF Network Packet Capture Tool**
+**Hướng dẫn hoàn chỉnh để cài đặt và sử dụng SNIFF**
 
----
-
-## 📖 Table of Contents
-
-1. [Installation](#-installation)
-2. [Quick Start](#-quick-start)
-3. [Usage Modes](#-usage-modes)
-4. [Command-Line Options](#-command-line-options)
-5. [Interactive Menu](#-interactive-menu)
-6. [Daemon Mode](#-daemon-mode)
-7. [Advanced Usage](#-advanced-usage)
-8. [Output Files](#-output-files)
-9. [Troubleshooting](#-troubleshooting)
-10. [Uninstall](#-uninstall)
+> **SNIFF**: Công cụ bắt và phân tích gói tin mạng (packet sniffer) cho Linux
 
 ---
 
-## 🚀 Installation
+## 📖 Mục Lục
 
-### One-Line Install (Recommended)
+1. [Cài Đặt](#-cài-đặt)
+2. [Bắt Đầu Nhanh](#-bắt-đầu-nhanh)
+3. [Các Chế Độ Sử Dụng](#-các-chế-độ-sử-dụng)
+4. [Tùy Chọn Command-Line](#-tùy-chọn-command-line)
+5. [Menu Tương Tác](#️-menu-tương-tác)
+6. [Chế Độ Daemon](#-chế-độ-daemon)
+7. [Sử Dụng Nâng Cao](#-sử-dụng-nâng-cao)
+8. [Files Kết Quả](#-files-kết-quả)  
+9. [Khắc Phục Sự Cố](#-khắc-phục-sự-cố)
+10. [Gỡ Cài Đặt](#️-gỡ-cài-đặt)
 
-Install everything (Python + dependencies + SNIFF) with one command:
+---
+
+## 🚀 Cài Đặt
+
+### Cài Đặt Tự Động (Khuyến Nghị)
+
+Một lệnh cài mọi thứ (Python + dependencies + SNIFF):
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/scripts/install.sh | sudo bash
 ```
 
-**What this does:**
-- ✅ Detects your OS (Ubuntu, Debian, CentOS, Fedora)
-- ✅ Installs Python 3.8+ if not present
-- ✅ Installs pip3 if needed
-- ✅ Installs scapy library
-- ✅ Installs SNIFF
-- ✅ Optionally sets up systemd service
+**Script tự động làm:**
+- ✅ Phát hiện hệ điều hành (Ubuntu, Debian, CentOS, Fedora)
+- ✅ Cài Python 3.8+ (nếu chưa có)
+- ✅ Cài pip3 (trình quản lý package Python)
+- ✅ Cài scapy (thư viện bắt gói tin)
+- ✅ Cài SNIFF
+- ✅ Tùy chọn cài đặt systemd service (chạy tự động)
 
-**Requirements:**
+**Yêu cầu:**
 - Linux OS (Ubuntu, Debian, CentOS, Fedora)
-- Root/sudo access
-- Internet connection
+- Quyền root/sudo
+- Kết nối Internet
 
 ---
 
-## ⚡ Quick Start
+## ⚡ Bắt Đầu Nhanh
 
-After installation, run SNIFF in interactive mode:
+Sau khi cài xong, chạy SNIFF ở chế độ menu tương tác:
 
 ```bash
 sudo sniff
 ```
 
-You'll see a menu like this:
+Bạn sẽ thấy menu như này:
 
 ```
 ╔═══════════════════════════════════════╗
 ║           SNIFF v1.0.0                ║
-║   Network Packet Capture Tool         ║
+║   Công Cụ Bắt Gói Tin Mạng           ║
 ╚═══════════════════════════════════════╝
 
-Main Menu:
-  [1] Quick Capture    - Start capturing on an interface
-  [2] Advanced Capture - Custom settings and filters
-  [3] Open PCAP File   - Browse captured packets
-  [4] Settings         - Configure defaults
-  [Q] Quit
+Menu Chính:
+  [1] Quick Capture    - Bắt nhanh trên một interface
+  [2] Advanced Capture - Cài đặt tùy chỉnh và filters
+  [3] Open PCAP File   - Xem file đã bắt
+  [4] Settings         - Cấu hình mặc định
+  [Q] Quit             - Thoát
 
-Select option [1-4, Q]:
+Chọn [1-4, Q]:
 ```
 
-**For quick capture:**
-1. Press `1` for Quick Capture
-2. Select network interface (e.g., eth0, wlan0)
-3. Press Enter to start capturing
-4. You'll see packets in real-time!
+**Để bắt nhanh:**
+1. Nhấn `1` → Quick Capture
+2. Chọn interface mạng (ví dụ: eth0, wlan0)
+3. Nhấn Enter để bắt đầu
+4. Xem gói tin real-time!
 
-**Stop capture:**
-- Press `S` to save and exit
-- Press `Q` to quit without saving
-- Press `SPACE` to pause/resume
+**Dừng capture:**
+- `S` → Lưu và thoát
+- `Q` → Thoát không lưu
+- `SPACE` → Tạm dừng/Tiếp tục
 
 ---
 
-## 🎯 Usage Modes
+## 🎯 Các Chế Độ Sử Dụng
 
-SNIFF has 3 main modes:
+SNIFF có 3 chế độ chính:
 
-### 1. Interactive Menu Mode
+### 1. Menu Tương Tác
 
 ```bash
 sudo sniff
 ```
 
-**Best for:** First-time users, exploring options
+**Phù hợp:** Người mới, khám phá tính năng
 
-**Features:**
-- Easy-to-use menu interface
-- Quick capture setup
-- Advanced configuration wizard
-- Browse existing PCAP files
-- View packet details
+**Tính năng:**
+- Menu dễ dùng
+- Setup nhanh
+- Wizard cấu hình nâng cao
+- Xem file PCAP đã bắt
+- Xem chi tiết từng gói tin
 
-### 2. Command-Line Mode
+### 2. Command Line
 
 ```bash
-# Basic capture on specific interface
+# Bắt cơ bản trên interface eth0
 sudo sniff -i eth0
 
-# With BPF filter
+# Với BPF filter (bộ lọc)
 sudo sniff -i eth0 -f "tcp port 80"
 
-# With custom buffer size
+# Với custom buffer size
 sudo sniff -i eth0 -b fast
 
-# Custom output directory
+# Custom thư mục lưu
 sudo sniff -i eth0 -o /data/captures
 ```
 
-**Best for:** Automation, scripts, quick captures
+**Phù hợp:** Tự động hóa, scripts, bắt nhanh
 
-### 3. Daemon Mode
+### 3. Daemon Mode (Chạy Ngầm)
 
 ```bash
-# Start as background daemon
+# Chạy như daemon background
 sudo sniff -i eth0 -d
 
-# Check status
+# Kiểm tra trạng thái
 sudo sniff --status
 
-# Stop daemon
+# Dừng daemon
 sudo sniff --stop
 ```
 
-**Best for:** 24/7 monitoring, production environments
+**Phù hợp:** Giám sát 24/7, môi trường production
 
 ---
 
-## 📋 Command-Line Options
+## 📋 Tùy Chọn Command-Line
 
-### Basic Options
+### Các Tùy Chọn Cơ Bản
 
 ```bash
 sniff [OPTIONS]
 
-Required:
-  -i, --interface INTERFACE    Network interface to capture on
-                               Example: eth0, wlan0, ens33
+Bắt buộc:
+  -i, --interface INTERFACE    Interface mạng để bắt gói tin
+                               Ví dụ: eth0, wlan0, ens33
 
-Optional:
-  -f, --filter FILTER          BPF filter expression
-                               Example: "tcp port 80"
-                                        "host 192.168.1.1"
-                                        "not port 22"
+Tùy chọn:
+  -f, --filter FILTER          Biểu thức BPF filter
+                               Ví dụ: "tcp port 80"
+                                      "host 192.168.1.1"
+                                      "not port 22"
 
-  -s, --snaplen SIZE          Max bytes per packet (default: 65535)
-                               Example: -s 1500
+  -s, --snaplen SIZE          Max bytes mỗi gói tin (mặc định: 65535)
+                               Ví dụ: -s 1500
 
-  -p, --no-promisc            Disable promiscuous mode
-                               (only capture packets for this host)
+  -p, --no-promisc            Tắt promiscuous mode
+                               (chỉ bắt gói tin cho máy này)
 
-  -b, --buffer PROFILE        Buffer size profile
+  -b, --buffer PROFILE        Buffer profile
                                Options: low, balanced, fast, max
-                               Default: balanced
+                               Mặc định: balanced
 
-  -o, --output DIR            Output directory
-                               Default: ./sniff_data
+  -o, --output DIR            Thư mục output
+                               Mặc định: ./sniff_data
 
-  -r, --retention DAYS        Keep files for N days (default: 7)
-                               Example: -r 30
+  -r, --retention DAYS        Giữ file N ngày (mặc định: 7)
+                               Ví dụ: -r 30
 
 Daemon Mode:
-  -d, --daemon                Run as background daemon
-  --status                    Show daemon status
-  --stop                      Stop daemon
+  -d, --daemon                Chạy như daemon(background)
+  --status                    Hiển thị trạng thái daemon
+  --stop                      Dừng daemon
 
-Utility:
-  --list-interfaces           Show available network interfaces
-  -h, --help                  Show help message
+Tiện ích:
+  --list-interfaces           Liệt kê interfaces mạng có sẵn
+  -h, --help                  Hiển thị help
 ```
 
-### Buffer Profiles
+### Buffer Profiles (Cấu Hình Bộ Nhớ Đệm)
 
-Choose based on your network speed and available memory:
+Chọn dựa trên tốc độ mạng và RAM có sẵn:
 
-| Profile | Buffer Size | Queue Size | Best For |
-|---------|-------------|------------|----------|
-| `low` | 1 MB | 100 | Low-traffic, limited RAM |
-| `balanced` | 4 MB | 500 | Normal usage (default) |
-| `fast` | 16 MB | 2000 | High-traffic networks |
-| `max` | 64 MB | 10000 | Enterprise, high-speed capture |
+| Profile | Kích Thước Buffer | Kích Thước Queue | Phù Hợp Cho |
+|---------|-------------------|------------------|-------------|
+| `low` | 1 MB | 100 | Traffic thấp, RAM hạn chế |
+| `balanced` | 4 MB | 500 | Sử dụng bình thường (mặc định) |
+| `fast` | 16 MB | 2000 | Mạng traffic cao |
+| `max` | 64 MB | 10000 | Enterprise, capture tốc độ cao |
+
+> **Buffer**: Vùng nhớ tạm lưu dữ liệu trước khi ghi vào file  
+> **Queue**: Hàng đợi, lưu gói tin chờ xử lý  
+> **Profile**: Cấu hình sẵn tùy theo nhu cầu
 
 ---
 
-## 🖥️ Interactive Menu
+## 🖥️ Menu Tương Tác
 
-### Quick Capture
+### Quick Capture (Bắt Nhanh)
 
-1. Run `sudo sniff`
-2. Select `[1] Quick Capture`
-3. Choose interface from list
-4. Capture starts immediately!
+1. Chạy `sudo sniff`
+2. Chọn `[1] Quick Capture`
+3. Chọn interface từ danh sách
+4. Capture bắt đầu ngay!
 
-**Real-time display:**
+**Hiển thị real-time:**
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║ SNIFF - Capturing on eth0                     [SPACE] Pause  ║
+║ SNIFF - Đang bắt trên eth0                [SPACE] Tạm dừng  ║
 ╠══════════════════════════════════════════════════════════════╣
-║ Stats: 1,234 pkts | 567 KB | 45 pps | 0 drops    [Q] Quit   ║
-║ File: eth0_2026-01-04_22.pcap                   [S] Save     ║
+║ Thống kê: 1,234 gói | 567 KB | 45 pps | 0 drops  [Q] Thoát ║
+║ File: eth0_2026-01-04_22.pcap                    [S] Lưu    ║
 ╠══════════════════════════════════════════════════════════════╣
-  #    Time      Src IP:Port          Dst IP:Port         Proto
-  1    0.000     192.168.1.100:52341  1.1.1.1:443        TCP
-  2    0.001     1.1.1.1:443          192.168.1.100:52341 TCP
-  3    0.015     192.168.1.100:52341  1.1.1.1:443        TCP
+  #    Thời gian    IP Nguồn:Port       IP Đích:Port       Proto
+  1    0.000        192.168.1.100:52341  1.1.1.1:443       TCP
+  2    0.001        1.1.1.1:443          192.168.1.100:52341 TCP
   ...
 ```
 
-**Controls:**
-- `SPACE` - Pause/Resume capture
-- `Q` - Quit without saving
-- `S` - Save and exit
-- `↑/↓` - Scroll packet list
-- `Enter` - View packet details
+> **pps**: packets per second - số gói tin mỗi giây  
+> **drops**: gói tin bị drop (mất) vì buffer đầy
 
-### Advanced Capture
+**Phím điều khiển:**
+- `SPACE` - Tạm dừng/Tiếp tục
+- `Q` - Thoát không lưu
+- `S` - Lưu và thoát
+- `↑/↓` - Cuộn danh sách
+- `Enter` - Xem chi tiết gói tin
 
-For custom configuration:
+### Advanced Capture (Bắt Nâng Cao)
 
-1. Select `[2] Advanced Capture`
-2. Configure settings:
+Để cấu hình tùy chỉnh:
+
+1. Chọn `[2] Advanced Capture`
+2. Cấu hình:
    - Interface
-   - BPF filter (optional)
-   - Snaplen
+   - BPF filter (tùy chọn)
+   - Snaplen (độ dài capture)
    - Buffer profile
-   - Output directory
-   - Retention days
+   - Thư mục output
+   - Retention days (số ngày giữ file)
    - Enable analysis modules
-3. Start capture
+3. Bắt đầu capture
 
-**Example Advanced Setup:**
-```
-Interface: eth0
-BPF Filter: tcp port 80 or tcp port 443
-Snaplen: 65535
-Buffer: fast
-Output: /data/web-traffic
-Retention: 30 days
-Modules: [x] dummy (protocol analysis)
-```
+### Browse PCAP Files (Xem File Đã Bắt)
 
-### Browse PCAP Files
-
-1. Select `[3] Open PCAP File`
-2. See list of captured files (newest first)
-3. Select file to view
-4. Browse packets and view details
+1. Chọn `[3] Open PCAP File`
+2. Xem danh sách file (mới nhất trước)
+3. Chọn file để xem
+4. Duyệt gói tin và xem chi tiết
 
 ---
 
-## 🔧 Daemon Mode
+## 🔧 Chế Độ Daemon
 
-### Setup as Systemd Service
+### Cài Đặt như Systemd Service
 
-During installation, the script asks if you want to setup systemd service.
+Trong quá trình cài đặt, script sẽ hỏi có muốn setup systemd service không.
 
-Or install manually:
+Hoặc cài thủ công:
 
 ```bash
-# Install service with auto-installer
-sudo ./install-service.sh eth0
+# Dùng script tự động
+sudo ./scripts/install-service.sh eth0
 
-# Or use the install.sh and choose service setup
-curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/install.sh | sudo bash
-# Then answer 'y' when asked about systemd service
+# Hoặc cài thủ công
+sudo cp scripts/sniff.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable sniff
+sudo systemctl start sniff
 ```
 
-### Service Management
+### Quản Lý Service
 
 ```bash
-# Start service
+# Khởi động service
 sudo systemctl start sniff
 
-# Stop service
+# Dừng service
 sudo systemctl stop sniff
 
-# Restart service
+# Khởi động lại
 sudo systemctl restart sniff
 
-# Check status
+# Kiểm tra trạng thái
 sudo systemctl status sniff
 
-# View logs (real-time)
+# Xem logs real-time
 sudo journalctl -u sniff -f
 
-# View logs (last 100 lines)
+# Xem 100 dòng log cuối
 sudo journalctl -u sniff -n 100
 
-# Enable auto-start on boot
+# Tự động chạy khi boot
 sudo systemctl enable sniff
 
-# Disable auto-start
+# Tắt tự động chạy
 sudo systemctl disable sniff
 ```
 
+> **systemd service**: Dịch vụ chạy ngầm trên Linux, tự động restart khi crash  
+> **journalctl**: Công cụ xem log của systemd
+
 ### Daemon CLI Mode
 
-Alternative to systemd service:
+Thay thế cho systemd service:
 
 ```bash
-# Start daemon
+# Khởi động daemon
 sudo sniff -i eth0 -d
 
-# Check if running
+# Kiểm tra xem đang chạy không
 sudo sniff --status
 # Output:
-# SNIFF Daemon Status
+# Trạng thái SNIFF Daemon
 # ------------------------------
 # Status: Running
 # PID:    12345
 # Log:    /tmp/sniff.log
 
-# Stop daemon
+# Dừng daemon
 sudo sniff --stop
 ```
 
 ---
 
-## 🎓 Advanced Usage
+## 🎓 Sử Dụng Nâng Cao
 
-### BPF Filters Examples
+### Ví Dụ BPF Filters (Bộ Lọc)
 
-Capture only specific traffic:
+Chỉ bắt traffic cụ thể:
 
 ```bash
-# HTTP traffic only
+# Chỉ HTTP traffic
 sudo sniff -i eth0 -f "tcp port 80"
 
-# HTTPS traffic
+# HTTPS traffic (web bảo mật)
 sudo sniff -i eth0 -f "tcp port 443"
 
-# DNS traffic
+# DNS traffic (tra cứu tên miền)
 sudo sniff -i eth0 -f "udp port 53"
 
-# Traffic from specific host
+# Traffic từ host cụ thể
 sudo sniff -i eth0 -f "host 192.168.1.100"
 
-# Traffic to specific network
+# Traffic tới mạng cụ thể
 sudo sniff -i eth0 -f "dst net 10.0.0.0/8"
 
-# Exclude SSH traffic
+# Loại trừ SSH traffic (tránh capture SSH của chính mình)
 sudo sniff -i eth0 -f "not port 22"
 
-# Multiple conditions (HTTP or HTTPS)
+# Nhiều điều kiện (HTTP hoặc HTTPS)
 sudo sniff -i eth0 -f "tcp port 80 or tcp port 443"
 
-# TCP SYN packets only
+# Chỉ TCP SYN packets (gói tin khởi tạo kết nối)
 sudo sniff -i eth0 -f "tcp[tcpflags] & tcp-syn != 0"
 
-# ICMP packets
+# ICMP packets (ping)
 sudo sniff -i eth0 -f "icmp"
 
-# Large packets only (> 1000 bytes)
+# Chỉ gói tin lớn (> 1000 bytes)
 sudo sniff -i eth0 -f "greater 1000"
 ```
 
-### Custom Output Directory
+> **BPF**: Berkeley Packet Filter - ngôn ngữ lọc gói tin  
+> **port**: cổng, số định danh dịch vụ (80=HTTP, 443=HTTPS, 53=DNS)  
+> **host**: máy tính/thiết bị mạng  
+> **SYN packet**: gói tin bắt đầu kết nối TCP
+
+### Custom Output Directory (Thư Mục Lưu Tùy Chỉnh)
 
 ```bash
-# Store in specific location
+# Lưu vào vị trí cụ thể
 sudo sniff -i eth0 -o /data/network-captures
 
-# Organized by purpose
+# Tổ chức theo mục đích
 sudo sniff -i eth0 -o /var/log/sniff/web-traffic -f "port 80 or port 443"
 sudo sniff -i eth0 -o /var/log/sniff/dns-traffic -f "port 53"
 ```
 
-### File Retention
+### File Retention (Lưu Trữ)
 
 ```bash
-# Keep files for 30 days
+# Giữ file 30 ngày
 sudo sniff -i eth0 -r 30
 
-# Keep files for 1 year
+# Giữ 1 năm
 sudo sniff -i eth0 -r 365
 
-# Keep forever (set to very high number)
+# Giữ mãi mãi
 sudo sniff -i eth0 -r 9999
 ```
 
-### High-Performance Capture
+### Capture Hiệu Suất Cao
 
-For gigabit networks:
+Cho mạng gigabit:
 
 ```bash
 sudo sniff -i eth0 -b max -s 1500 -f "not port 22"
 ```
 
-Explanation:
-- `-b max` - Maximum buffer (64MB, 10K queue)
-- `-s 1500` - Snaplen 1500 (don't need full packet for analysis)
-- `-f "not port 22"` - Skip SSH to reduce volume
+**Giải thích:**
+- `-b max` - Buffer tối đa (64MB, 10K queue)
+- `-s 1500` - Snaplen 1500 (không cần full packet để phân tích)
+- `-f "not port 22"` - Bỏ qua SSH để giảm dung lượng
 
 ---
 
-## 📁 Output Files
+## 📁 Files Kết Quả
 
-### Directory Structure
+### Cấu Trúc Thư Mục
 
-Default location: `./sniff_data/`
+Vị trí mặc định: `./sniff_data/`
 
 ```
 sniff_data/
-├── raw/                           # Raw PCAP files
+├── raw/                           # File PCAP thô
 │   └── 2026-01-04/
 │       ├── eth0_2026-01-04_00.pcap  # 00:00-00:59
 │       ├── eth0_2026-01-04_01.pcap  # 01:00-01:59
 │       ├── eth0_2026-01-04_22.pcap  # 22:00-22:59
 │       └── ...
-└── modules/                       # Analysis results
-    └── dummy/                     # Module name
+└── modules/                       # Kết quả phân tích
+    └── dummy/                     # Tên module
         └── 2026-01-04/
             ├── eth0_2026-01-04_22.summary.json
             └── eth0_2026-01-04_22.index.jsonl
 ```
 
-### PCAP Files
+### Files PCAP
 
-- **Format:** Standard PCAP format (readable by Wireshark, tcpdump)
-- **Naming:** `{interface}_{date}_{hour}.pcap`
-- **Rotation:** Automatic hourly rotation
-- **Retention:** Auto-delete after configured days
+- **Format:** PCAP chuẩn (mở được bằng Wireshark, tcpdump)
+- **Tên file:** `{interface}_{ngày}_{giờ}.pcap`
+- **Rotation:** Tự động xoay mỗi giờ
+- **Retention:** Tự động xóa sau số ngày cấu hình
 
-**Open with Wireshark:**
+**Mở bằng Wireshark:**
 ```bash
 wireshark sniff_data/raw/2026-01-04/eth0_2026-01-04_22.pcap
 ```
 
-**Analyze with tcpdump:**
+**Phân tích bằng tcpdump:**
 ```bash
 tcpdump -r sniff_data/raw/2026-01-04/eth0_2026-01-04_22.pcap
 ```
 
-### Module Output
+> **Wireshark**: Công cụ phân tích gói tin GUI nổi tiếng  
+> **tcpdump**: Công cụ phân tích gói tin dòng lệnh
 
-Analysis modules generate:
+### Module Output (Kết Quả Phân Tích)
+
+Modules tạo ra:
 
 **Summary JSON (`*.summary.json`):**
 ```json
@@ -459,207 +469,179 @@ Analysis modules generate:
   "labels": {
     "port-scan": 2,
     "high-rate-source": 3
-  },
-  "top_sources": [
-    ["192.168.1.100", 5000],
-    ["192.168.1.101", 3000]
-  ]
+  }
 }
 ```
 
 **Detection Index (`*.index.jsonl`):**
 ```json
-{"stt": 1234, "ts_sec": 1704394800, "label": "port-scan", "src": "192.168.1.100", "unique_ports": 50}
-{"stt": 5678, "ts_sec": 1704394900, "label": "high-rate-source", "src": "10.0.0.5", "packet_count": 5000}
+{"stt": 1234, "label": "port-scan", "src": "192.168.1.100", "unique_ports": 50}
+{"stt": 5678, "label": "high-rate-source", "src": "10.0.0.5", "packet_count": 5000}
 ```
+
+> **port-scan**: Quét port, hành vi dò tìm cổng mở  
+> **high-rate-source**: Nguồn gửi gói tin với tần suất cao bất thường
 
 ---
 
-## 🐛 Troubleshooting
+## 🐛 Khắc Phục Sự Cố
 
-### "Permission denied" Error
+### Lỗi "Permission denied"
 
-**Problem:** Running without sudo
+**Nguyên nhân:** Chạy không dùng sudo
 
-**Solution:**
+**Giải pháp:**
 ```bash
-# Always use sudo for packet capture
+# Luôn dùng sudo để bắt gói tin
 sudo sniff -i eth0
 ```
 
-### "Interface not found" Error
+### Lỗi "Interface not found"
 
-**Problem:** Invalid interface name
+**Nguyên nhân:** Tên interface không đúng
 
-**Solution:**
+**Giải pháp:**
 ```bash
-# List available interfaces
+# Liệt kê interfaces có sẵn
 sudo sniff --list-interfaces
 
-# Or use system command
+# Hoặc dùng lệnh hệ thống
 ip link show
 ```
 
-Output example:
-```
-Available Interfaces:
-  - eth0
-  - wlan0
-  - lo
-```
+### Lỗi "Scapy not found"
 
-### "Scapy not found" Error
-
-**Problem:** Scapy not installed
-
-**Solution:**
+**Giải pháp:**
 ```bash
-# Install manually
+# Cài thủ công
 sudo pip3 install scapy>=2.5.0
 
-# Or reinstall SNIFF (includes dependencies)
-curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/install.sh | sudo bash
+# Hoặc cài lại SNIFF (bao gồm dependencies)
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/scripts/install.sh | sudo bash
 ```
 
-### "Cannot capture packets" / 0 packets captured
+### Không Bắt Được Gói Tin / 0 gói tin
 
-**Possible causes:**
-
-1. **Wrong interface:** Check with `ip link show`
-2. **No traffic:** Use `ping` to generate traffic
-3. **Firewall blocking:** Check iptables/firewalld
-4. **BPF filter too restrictive:** Try without `-f` filter first
+**Nguyên nhân có thể:**
+1. Interface sai → Kiểm tra `ip link show`
+2. Không có traffic → Dùng `ping` để tạo traffic
+3. Firewall chặn → Kiểm tra iptables/firewalld
+4. BPF filter quá chặt → Thử không dùng `-f` trước
 
 **Debug:**
 ```bash
-# Test with tcpdump (should work if system is OK)
+# Test với tcpdump (nếu work thì hệ thống OK)
 sudo tcpdump -i eth0 -c 10
 
-# If tcpdump works but SNIFF doesn't, report issue on GitHub
+# tcpdump work mà SNIFF không → báo issue GitHub
 ```
 
-### High CPU Usage
+### CPU Cao
 
-**Solution:** Use smaller buffer profile or BPF filter
-
+**Giải pháp:**
 ```bash
-# Reduce buffer
+# Giảm buffer
 sudo sniff -i eth0 -b low
 
-# Filter specific traffic only
+# Filter traffic cụ thể
 sudo sniff -i eth0 -f "host 192.168.1.100"
 ```
 
-### Disk Full
+### Disk Đầy
 
-**Problem:** Too many PCAP files
-
-**Solution:**
+**Giải pháp:**
 ```bash
-# Reduce retention days
+# Giảm retention days
 sudo sniff -i eth0 -r 1
 
-# Or manually clean old files
+# Xóa file cũ thủ công
 rm -rf sniff_data/raw/2026-01-01/
 ```
 
 ---
 
-## 🗑️ Uninstall
+## 🗑️ Gỡ Cài Đặt
 
-### Complete Uninstall
+### Gỡ Hoàn Toàn
 
 ```bash
-# One-line uninstall
-curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/uninstall.sh | sudo bash
+# Một lệnh gỡ toàn bộ
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/scripts/uninstall.sh | sudo bash
 ```
 
-This removes:
+Script xóa:
 - ✅ SNIFF package
 - ✅ Systemd service
 - ✅ Service files
 
-**Note:** Captured data (`sniff_data/`) is NOT deleted automatically.
+**Lưu ý:** Dữ liệu đã capture (`sniff_data/`) KHÔNG tự động xóa.
 
-### Manual Uninstall
+### Gỡ Thủ Công
 
 ```bash
-# Stop and disable service
+# Dừng và disable service
 sudo systemctl stop sniff
 sudo systemctl disable sniff
 
-# Remove service file
+# Xóa service file
 sudo rm /etc/systemd/system/sniff.service
 sudo systemctl daemon-reload
 
-# Uninstall package
+# Gỡ package
 sudo pip3 uninstall -y sniff-pcap
 
-# Remove captured data (optional)
+# Xóa dữ liệu (tùy chọn)
 rm -rf ./sniff_data
 ```
 
 ---
 
-## 📚 Additional Resources
+## 📚 Tài Nguyên Thêm
 
-### Example Use Cases
+### Ví Dụ Use Cases
 
-**1. Monitor Web Traffic**
+**1. Giám Sát Web Traffic**
 ```bash
 sudo sniff -i eth0 -f "port 80 or port 443" -o /var/log/web-traffic -r 30
 ```
 
-**2. Capture DNS Queries**
+**2. Bắt DNS Queries**
 ```bash
 sudo sniff -i eth0 -f "port 53" -o /var/log/dns-queries
 ```
 
-**3. Debug Specific Host**
+**3. Debug Host Cụ Thể**
 ```bash
 sudo sniff -i eth0 -f "host 192.168.1.100"
 ```
 
-**4. Production Monitoring (24/7)**
+**4. Giám Sát Production 24/7**
 ```bash
-# Setup as service
-sudo ./install-service.sh eth0
+# Setup như service
+sudo ./scripts/install-service.sh eth0
 
-# Or manual daemon
+# Hoặc daemon thủ công
 sudo sniff -i eth0 -d -b fast -r 90
-```
-
-### Getting Help
-
-```bash
-# Built-in help
-sudo sniff --help
-
-# GitHub Issues
-https://github.com/ntu168108/sniff/issues
-
-# View version
-pip3 show sniff-pcap
 ```
 
 ---
 
-## ✅ Quick Reference Card
+## ✅ Bảng Tra Cứu Nhanh
 
 ```bash
-# Installation
-curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/install.sh | sudo bash
+# Cài đặt
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/scripts/install.sh | sudo bash
 
-# Interactive Mode
+# Menu tương tác
 sudo sniff
 
-# Quick Capture
+# Bắt nhanh
 sudo sniff -i eth0
 
-# With Filter
+# Với filter
 sudo sniff -i eth0 -f "tcp port 80"
 
-# Daemon Mode
+# Daemon mode
 sudo sniff -i eth0 -d
 sudo sniff --status
 sudo sniff --stop
@@ -669,15 +651,44 @@ sudo systemctl start sniff
 sudo systemctl status sniff
 sudo journalctl -u sniff -f
 
-# List Interfaces
+# Liệt kê interfaces
 sudo sniff --list-interfaces
 
-# Uninstall
-curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/uninstall.sh | sudo bash
+# Gỡ cài đặt
+curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/scripts/uninstall.sh | sudo bash
 ```
 
 ---
 
-**Version:** 1.0.0  
-**Last Updated:** 2026-01-04  
-**License:** MIT
+## 📚 Bảng Thuật Ngữ Chuyên Ngành
+
+| Thuật Ngữ | Tiếng Việt | Giải Thích Chi Tiết |
+|-----------|------------|---------------------|
+| **Packet** | Gói tin | Đơn vị dữ liệu nhỏ được truyền qua mạng |
+| **Interface** | Card mạng | Kết nối mạng: eth0 (dây), wlan0 (wifi), lo (loopback) |
+| **Port** | Cổng | Số định danh dịch vụ: 80 (HTTP), 443 (HTTPS), 22 (SSH) |
+| **Filter** | Bộ lọc | Điều kiện chọn lọc gói tin muốn xem |
+| **BPF** | Berkeley Packet Filter | Ngôn ngữ lọc gói tin mạnh mẽ |
+| **Daemon** | Tiến trình ngầm | Chương trình chạy background, không hiển thị UI |
+| **PCAP** | Packet Capture | Định dạng file lưu gói tin chuẩn |
+| **Snapshot length** | Độ dài snapshot | Số bytes tối đa capture từ mỗi gói tin |
+| **Promiscuous mode** | Chế độ promiscuous | Bắt TẤT CẢ gói tin trên mạng, không chỉ gói tới máy này |
+| **Buffer** | Bộ đệm | Vùng nhớ tạm lưu dữ liệu trước khi ghi file |
+| **Queue** | Hàng đợi | Danh sách gói tin chờ xử lý |
+| **TUI** | Giao diện text | Text User Interface - giao diện dạng text, không phải GUI |
+| **Real-time** | Thời gian thực | Hiển thị ngay lập tức khi có dữ liệu |
+| **Retention** | Lưu giữ | Số ngày lưu file trước khi tự động xóa |
+| **Rotation** | Xoay vòng | Tự động tạo file mới theo chu kỳ (mỗi giờ) |
+| **Systemd** | Systemd | Hệ thống quản lý service trên Linux hiện đại |
+| **Module** | Module/Plugin | Thành phần mở rộng để phân tích gói tin |
+| **Drop** | Rơi/Mất | Gói tin bị mất do buffer đầy |
+| **pps** | Gói tin/giây | Packets per second - số gói tin mỗi giây |
+| **bps** | Bytes/giây | Bytes per second - tốc độ dữ liệu |
+
+---
+
+**Phiên bản:** 1.0.0  
+**Cập nhật:** 2026-01-04  
+**Giấy phép:** MIT
+
+**Chúc bắt gói tin vui vẻ! 🚀**
