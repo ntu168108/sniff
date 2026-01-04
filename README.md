@@ -6,7 +6,7 @@
 
 Công cụ bắt gói tin mạng mạnh mẽ và modular cho Linux với giao diện TUI real-time và hệ thống module phân tích mở rộng.
 
-[English](README.md) | **Tiếng Việt**
+**English** | **Tiếng Việt**
 
 ## Tính Năng
 
@@ -312,7 +312,7 @@ Contributions được hoan nghênh! Vui lòng submit Pull Request.
 
 ## Tác Giả
 
-Được tạo bởi Tu
+TuEx3
 
 ## Cảm Ơn
 
