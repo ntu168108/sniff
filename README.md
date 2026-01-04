@@ -22,7 +22,8 @@ Công cụ bắt gói tin mạng mạnh mẽ và modular cho Linux với giao di
 ## Cài Đặt Nhanh (Một Lệnh)
 
 ```bash
-# Tự động cài đặt mọi thứ (Python + SNIFF)
+sudo apt update
+sudo apt install git -y
 curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/scripts/install.sh | sudo bash
 ```
 
