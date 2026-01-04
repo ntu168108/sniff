@@ -135,9 +135,19 @@ echo -e "${BLUE}[5/5] Installing SNIFF...${NC}"
 GITHUB_REPO="ntu168108/sniff"
 INSTALL_METHOD="github"
 
+# Check if we need --break-system-packages (Ubuntu 23.04+, Debian 12+)
+PIP_EXTRA_ARGS=""
+if pip3 install --help 2>&1 | grep -q "break-system-packages"; then
+    # Check if this is externally-managed environment
+    if [ -f /usr/lib/python*/EXTERNALLY-MANAGED ] || [ -f /usr/lib/python3.*/EXTERNALLY-MANAGED ]; then
+        echo "  Detected externally-managed environment, using --break-system-packages"
+        PIP_EXTRA_ARGS="--break-system-packages"
+    fi
+fi
+
 if [ "$INSTALL_METHOD" = "github" ]; then
     echo "  Installing from GitHub..."
-    pip3 install --quiet git+https://github.com/$GITHUB_REPO.git
+    pip3 install --quiet $PIP_EXTRA_ARGS git+https://github.com/$GITHUB_REPO.git
 else
     # Alternative: download and install locally
     echo "  Downloading latest release..."
