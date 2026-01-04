@@ -23,7 +23,7 @@ NC='\033[0m' # No Color
 # Banner
 echo -e "${GREEN}"
 echo "╔═══════════════════════════════════════╗"
-echo "║   SNIFF Auto-Installer v1.0.0         ║"
+echo "║   SNIFF Auto-Installer v0.0.1         ║"
 echo "║   Network Packet Capture Tool         ║"
 echo "╚═══════════════════════════════════════╝"
 echo -e "${NC}"
