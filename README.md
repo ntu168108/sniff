@@ -19,11 +19,12 @@ Công cụ bắt gói tin mạng mạnh mẽ và modular cho Linux với giao di
 - **Tạm Dừng/Tiếp Tục** - Điều khiển capture mà không mất dữ liệu
 - **BPF Filters** - Hỗ trợ Berkeley Packet Filter để capture có mục tiêu
 
-## Cài Đặt Nhanh (Một Lệnh)
+## Cài Đặt Nhanh
 
 ```bash
 sudo apt update
 sudo apt install git -y
+sudo apt install curl -y
 curl -sSL https://raw.githubusercontent.com/ntu168108/sniff/main/scripts/install.sh | sudo bash
 ```
 
